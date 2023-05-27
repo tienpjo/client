@@ -8,11 +8,13 @@ import { FooterComponent } from './component/footer/footer.component';
 import { MainComponent } from './component/main/main.component';
 import { SharedModule } from './shared/component/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ApiService } from './services/api.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent],
-  imports: [BrowserModule, NgbModule, SharedModule, FontAwesomeModule],
-  providers: [],
+  imports: [BrowserModule, HttpClientModule, NgbModule, SharedModule, FontAwesomeModule],
+  providers: [ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -53,6 +53,14 @@
 .text-left {
   text-align: left !important;
 }
-/* .carousel-control-prev-icon {
 
-} */
+.no-indicators .carousel-indicators {
+  display: none;
+}
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  visibility: hidden !important;
+}
+.carousel-indicators li {
+  display: none !important;
+}

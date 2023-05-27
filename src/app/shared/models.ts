@@ -1,10 +1,9 @@
 export interface Product {
-  _id?: string;
+  id?: string;
   title: string;
-  titleUrl: string;
   description: string;
   descriptionFull: string[];
-  tags: string[];
+  category: string[];
   regularPrice: number;
   salePrice: number;
   visibility: boolean;
@@ -14,5 +13,19 @@ export interface Product {
   mainImage: { url: string; name: string };
   images: string[];
   _user?: any;
-  dateAdded?: any;
+  createdAt?: any;
+  updatedAt?: any;
+}
+
+export interface GetProducts {
+  products: Product[];
+  maxPrice: { salePrice: string };
+  //TODO: fix type of max min Price
+  minPrice: { salePrice: string };
+  pagination: {
+    limit: number;
+    page: number;
+    pages: number;
+    total: number;
+  };
 }
