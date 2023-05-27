@@ -14,14 +14,17 @@ export class ApiService {
 
   getProduct(req: any): Observable<GetProducts> {
     const { lang, page, sort, category, maxPrice } = req;
+
     const addCategory = category ? { category } : {};
     const categoryQuery = category ? '&category=' + category : '';
     const priceQuery = maxPrice ? '&maxPrice=' + maxPrice : '';
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.requestOpts = new HttpHeaders({ 'Content-Type': 'application/json' });
+
     const apiProducts =
       this.apiUrl + '/api/products?' + '&page=' + page + '&sort=' + sort + categoryQuery + priceQuery;
     console.log(apiProducts);
-    return this.http.get<GetProducts>(apiProducts, { headers }).pipe(
+
+    return this.http.get<GetProducts>(apiProducts, this.requestOpts).pipe(
       map((data: any) => ({
         products: data.all.map((product: any) => ({
           ...product,
