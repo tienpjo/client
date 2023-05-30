@@ -29,3 +29,12 @@ export interface GetProducts {
     total: number;
   };
 }
+
+export interface Category {
+  title: string;
+  description?: string;
+  visibility?: boolean;
+  mainImage?: { url: string; name: string; type?: boolean };
+  subCategory?: string;
+  position: number;
+}

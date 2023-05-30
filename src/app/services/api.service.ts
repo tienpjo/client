@@ -12,7 +12,7 @@ export class ApiService {
   requestOpts = {};
   constructor(private readonly http: HttpClient) {}
 
-  getProduct(req: any): Observable<GetProducts> {
+  getProduct(req?: any): Observable<GetProducts> {
     const { lang, page, sort, category, maxPrice } = req;
 
     const addCategory = category ? { category } : {};

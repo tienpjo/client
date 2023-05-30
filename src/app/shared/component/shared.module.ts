@@ -8,7 +8,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faCoffee, faBars, faCartShopping, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { RouterModule } from '@angular/router';
-
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [ProductContentComponent, ProductListComponent, MenuBarComponent, SideBarComponent],
   imports: [CommonModule, NgbModule, FontAwesomeModule, RouterModule],
