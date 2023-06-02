@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductContentComponent } from './products/product-content/product-content.component';
-import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductContentComponent } from '../../features/products/product-content/product-content.component';
+import { ProductListComponent } from '../../features/products/product-list/product-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
@@ -9,11 +9,12 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { faCoffee, faBars, faCartShopping, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
+import { CarouselComponent } from './carousel/carousel.component';
 @NgModule({
-  declarations: [ProductContentComponent, ProductListComponent, MenuBarComponent, SideBarComponent],
+  declarations: [MenuBarComponent, SideBarComponent, CarouselComponent],
   imports: [CommonModule, NgbModule, FontAwesomeModule, RouterModule],
   providers: [],
-  exports: [ProductContentComponent, ProductListComponent, MenuBarComponent, SideBarComponent],
+  exports: [MenuBarComponent, SideBarComponent, CarouselComponent],
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {
