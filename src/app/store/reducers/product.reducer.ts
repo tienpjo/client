@@ -1,7 +1,16 @@
-import { createReducer, on } from '@ngrx/store';
-import { Category, Product } from 'src/app/shared/models';
+import { Action, createReducer, on } from '@ngrx/store';
+import { Category, GetProducts, Product } from 'src/app/shared/models';
 import { ProductActions } from '../actions';
 import { ActionReducer, MetaReducer } from '@ngrx/store';
+import * as AppState from './../state/app.state';
+import { GetProduct } from '../actions/product.action';
+import { state } from '@angular/animations';
+
+export interface State extends AppState.State {
+  products: ProductState;
+}
+
+export const keyProductState = 'products';
 
 export interface ProductState {
   products: Product[];
@@ -18,20 +27,18 @@ const initialState: ProductState = {
 };
 export const productReducer = createReducer<ProductState>(
   initialState,
+  on(ProductActions.GetProduct, (state, action): ProductState => {
+    return {
+      ...state,
+      loading: true,
+    };
+  }),
+
   on(ProductActions.loadProductSuccess, (state, action): ProductState => {
     return {
       ...state,
+      loading: false,
       products: action.products,
     };
   })
 );
-
-export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
-  return function (state, action) {
-    console.log('state', state);
-    console.log('action', action);
-
-    return reducer(state, action);
-  };
-}
-export const metaReducers: MetaReducer<any>[] = [debug];
