@@ -10,8 +10,10 @@ import { faCoffee, faBars, faCartShopping, faShoppingCart } from '@fortawesome/f
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { CarouselComponent } from './carousel/carousel.component';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
-  declarations: [MenuBarComponent, SideBarComponent, CarouselComponent],
+  declarations: [MenuBarComponent, SideBarComponent, CarouselComponent, LoginComponent],
   imports: [CommonModule, NgbModule, FontAwesomeModule, RouterModule],
   providers: [],
   exports: [MenuBarComponent, SideBarComponent, CarouselComponent],

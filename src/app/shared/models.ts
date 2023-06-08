@@ -1,3 +1,12 @@
+export interface User {
+  id?: string;
+  username: string;
+  password: string;
+  fullName?: string;
+  role?: string[];
+  accessToken?: string;
+}
+
 export interface Product {
   id?: string;
   title: string;

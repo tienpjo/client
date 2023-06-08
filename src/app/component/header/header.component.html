@@ -5,20 +5,15 @@
       <div class="col-lg-6 col-md-4">
         <div class="top-left d-flex">
           <div class="lang-box">
-            <span><img src="" alt="" />English<i class="fa fa-angle-down"></i></span>
+            <span><img src="" alt="" />Vietnamese<i class="fa fa-angle-down"></i></span>
             <ul class="list-unstyled">
               <li><img src="" alt="" />English</li>
-              <li><img src="" alt="" />French</li>
-              <li><img src="" alt="" />German</li>
-              <li><img src="" alt="" />Brazilian</li>
             </ul>
           </div>
           <div class="mny-box">
-            <span>USD<i class="fa fa-angle-down"></i></span>
+            <span>VND<i class="fa fa-angle-down"></i></span>
             <ul class="list-unstyled">
               <li>USD</li>
-              <li>GBP</li>
-              <li>EUR</li>
             </ul>
           </div>
         </div>
@@ -89,7 +84,7 @@
             </div>
           </div>
           <div class="cart-box ml-auto text-center">
-            <a href="" class="cart-btn">
+            <a class="cart-btn" (click)="cartClick()">
               <img src="../../../assets/img/cart.png" alt="cart" />
               <span>2</span>
             </a>
@@ -100,3 +95,4 @@
   </div>
 </section>
 <app-menu-bar></app-menu-bar>
+<app-cart #appcart></app-cart>

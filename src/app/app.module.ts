@@ -14,8 +14,11 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ProductModule } from './features/products/products.module';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule, routes } from './app-routing.module';
+import { CartComponent } from './features/cart/cart/cart.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, CartComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -24,8 +27,9 @@ import { ProductModule } from './features/products/products.module';
     FontAwesomeModule,
     ProductModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ name: 'App Redux tool', maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({ name: 'Client Redux', maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
+    AppRoutingModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
