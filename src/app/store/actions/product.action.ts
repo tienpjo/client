@@ -13,6 +13,8 @@ export const getCartSuccess = createAction('[Product] Get Cart Success', props<{
 
 export const addProductToCart = createAction('[Product] Add Product To Cart', props<{ id: any }>());
 
+export const removeProductFromCart = createAction('[Product] Remove Product From Cart', props<{ id: any }>());
+
 export const addToCartSuccess = createAction('[Product] Add Product To Cart Success', props<{ id: any }>());
 
 export const getCategories = createAction('[Categories] Load Categories', props<{ loading: true }>());

@@ -24,9 +24,7 @@ export class MainComponent implements OnInit {
     this.products$ = this.store.select(ProductSelector.GetProducts);
     this.categories$ = this.store.select(ProductSelector.GetCategories);
     this.store.dispatch(ProductActions.getCart());
-    // .subscribe({ next: value => (this.products = value.products) });
     this.cart$ = this.store.select(ProductSelector.GetCart);
-    //  this.p_cart = of({ '6470ffffce6aa94bb14c0482': 2 });
     this.cartIds$ = this.cart$.pipe(
       filter(cart => !!cart),
       map((cart: Cart) =>
@@ -35,12 +33,11 @@ export class MainComponent implements OnInit {
           : {}
       )
     );
-    this.categories$.subscribe(vl => console.log(vl));
   }
   addToCart(id: string) {
     this.store.dispatch(ProductActions.addProductToCart({ id: id }));
   }
   removeFromCart(id: string) {
-    this.store.dispatch(ProductActions.addProductToCart({ id: id }));
+    this.store.dispatch(ProductActions.removeProductFromCart({ id: id }));
   }
 }

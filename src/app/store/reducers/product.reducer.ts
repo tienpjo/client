@@ -3,7 +3,7 @@ import { Cart, Category, Product } from 'src/app/shared/models';
 import { ProductActions } from '../actions';
 import * as AppState from './../state/app.state';
 import * as localStorage from '../storage';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import { state } from '@angular/animations';
 export interface State extends AppState.State {
   products: ProductState;
 }
@@ -16,7 +16,6 @@ export interface ProductState {
   categories: Category[];
   loading: boolean;
   cart: Cart;
-  //
 }
 
 const initialState: ProductState = {
@@ -26,6 +25,7 @@ const initialState: ProductState = {
   loadingProducts: false,
   cart: localStorage.getItem('product'),
 };
+
 export const productReducer = createReducer<ProductState>(
   initialState,
   on(ProductActions.GetProduct, (state, action): ProductState => {
@@ -63,6 +63,7 @@ export const productReducer = createReducer<ProductState>(
       cart: action.id,
     };
   }),
+
   on(ProductActions.getCartSuccess, (state, action): ProductState => {
     return {
       ...state,

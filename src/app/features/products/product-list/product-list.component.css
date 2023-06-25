@@ -1,10 +1,10 @@
 .product-image {
-  max-width: 10rem;
+  max-width: 11rem;
   min-height: 200px;
 }
 
 .product {
-  max-width: 290px;
+  max-width: 300px;
   max-height: auto;
   box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
   padding: 16px;

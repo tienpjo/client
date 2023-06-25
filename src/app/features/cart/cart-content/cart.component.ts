@@ -1,19 +1,34 @@
-import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Cart } from 'src/app/shared/models';
+import { ProductActions } from 'src/app/store/actions';
+import { ProductSelector } from 'src/app/store/selectors/index.selectors';
+import { State } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   @ViewChild('cartbody') cartBody: ElementRef<HTMLDivElement>;
   @ViewChild('cartoverlay') cartOverlay: ElementRef<HTMLDivElement>;
   @ViewChild('cartClose') cartClose: ElementRef<HTMLButtonElement>;
-  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
+  cart$: Observable<Cart>;
+  constructor(private renderer: Renderer2, private elRef: ElementRef, private store: Store<State>) {}
+
+  ngOnInit(): void {
+    this.cart$ = this.store.select(ProductSelector.GetCart);
+  }
+
   closeCart() {
-    let cartEl = this.cartBody.nativeElement;
+    const cartEl = this.cartBody.nativeElement;
     this.renderer.removeClass(cartEl, 'cart-open');
-    let overlayEl = this.cartOverlay.nativeElement;
+    const overlayEl = this.cartOverlay.nativeElement;
     this.renderer.removeClass(overlayEl, 'overlay-visible');
+  }
+  removeCart(id: string) {
+    this.store.dispatch(ProductActions.removeProductFromCart({ id: id }));
   }
 }

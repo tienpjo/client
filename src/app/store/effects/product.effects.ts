@@ -45,4 +45,15 @@ export class ProductEffects {
       )
     );
   });
+
+  removeFromCart$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.removeProductFromCart),
+      switchMap(action =>
+        this.apiService
+          .removeFromCart(action.id)
+          .pipe(map(res => ProductActions.getCartSuccess({ cart: res })))
+      )
+    );
+  });
 }

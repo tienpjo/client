@@ -65,6 +65,15 @@ export class ApiService {
     return this.http.get(addCartUrl, this.requestOpts);
   }
 
+  removeFromCart(params: string) {
+    const headers = new HttpHeaders();
+    this.requestOpts = { headers, withCredentials: true };
+    this.randomNumber = this.randomNumber + 2;
+    const randomNum = '&randomId=' + this.randomNumber;
+    const removeCartUrl = this.apiUrl + '/api/cart/remove/?id=' + params + randomNum;
+    return this.http.get(removeCartUrl, this.requestOpts);
+  }
+
   getCategories(): Observable<Category[]> {
     const categoryUrl = this.apiUrl + '/api/products/category';
     return this.http.get<Category[]>(categoryUrl, this.requestOpts);

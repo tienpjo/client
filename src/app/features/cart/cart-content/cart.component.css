@@ -36,7 +36,23 @@
   right: 0 !important;
 }
 
+.cart-heading {
+  margin-bottom: 2rem;
+}
 .overlay-visible {
   visibility: visible !important;
   opacity: 1;
+}
+.cart-disc {
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 0.5rem;
+}
+.item-image {
+  max-width: 40px;
+}
+
+.sub-total {
+  font-size: 16px;
+  font-weight: 600;
+  color: #495057;
 }

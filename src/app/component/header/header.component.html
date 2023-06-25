@@ -84,10 +84,9 @@
             </div>
           </div>
           <div class="cart-box ml-auto text-center">
-            <a class="cart-btn" (click)="cartClick()">
-              <!-- <img src="../../../assets/img/cart.png" alt="cart" />
-              <span>2</span> -->
-              <!-- <app-cart-show></app-cart-show> -->
+            <a class="cart-btn" (click)="cartClick()" *ngIf="cart$ | async as cart">
+              <img src="../../../assets/img/cart.png" alt="cart" />
+              <span>{{ cart?.totalQty }}</span>
             </a>
           </div>
         </div>
