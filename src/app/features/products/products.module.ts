@@ -9,6 +9,7 @@ import { ProductContentComponent } from './product-content/product-content.compo
 import { ProductListComponent } from './product-list/product-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CartModule } from '../cart/cart.module';
 
 @NgModule({
   declarations: [ProductListComponent, ProductContentComponent],
@@ -18,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     NgbModule,
     FontAwesomeModule,
+    CartModule,
     StoreModule.forFeature(keyProductState, productReducer),
     EffectsModule.forFeature([ProductEffects]),
   ],

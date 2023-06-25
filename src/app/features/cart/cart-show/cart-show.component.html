@@ -1,0 +1,13 @@
+<!-- <img src="../../../assets/img/cart.png" alt="cart" (click)="add.emit()" />
+  <span *ngIf="!!items_qty">{{ items_qty }}</span>
+  <img src="../../../assets/img/cart.png" alt="cart" (click)="remove.emit()" /> -->
+<!-- <img src="../../../assets/img/cart.png" alt="cart" (click)="add.emit()" /> -->
+
+<div class="cart_show-wrap" (click)="add.emit()">
+  <fa-icon icon="cart-plus"></fa-icon>
+</div>
+<span class="cart_show-quantity" *ngIf="!!items_qty"> {{ items_qty }}pcs</span>
+
+<div (click)="remove.emit()">
+  <fa-icon icon="cart-arrow-down"></fa-icon>
+</div>

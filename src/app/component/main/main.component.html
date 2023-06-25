@@ -1,8 +1,8 @@
 <section class="slider-area">
   <div class="container">
     <div class="row">
-      <div class="col-lg-3 col-md-4">
-        <app-side-bar></app-side-bar>
+      <div class="col-lg-3 col-md-4" *ngIf="categories$ | async as categories">
+        <app-side-bar [categories]="categories"></app-side-bar>
       </div>
       <div class="col-lg-9 col-md-8 padding-fix-l20">
         <div class="owl-carousel owl-slider">
@@ -25,8 +25,13 @@
           <div class="area-title">
             <h5>Product</h5>
           </div>
-          <div class="d-flex justify-content-between">
-            <app-product-list></app-product-list>
+          <div *ngIf="products$ | async as products">
+            <app-product-list
+              [cartIds]="cartIds$ | async"
+              [products]="products"
+              (addProduct)="addToCart($event)"
+              (removeProduct)="removeFromCart($event)"
+            ></app-product-list>
           </div>
         </div>
       </div>

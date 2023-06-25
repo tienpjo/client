@@ -8,7 +8,7 @@ export interface User {
 }
 
 export interface Product {
-  id?: string;
+  _id?: string;
   title: string;
   description: string;
   descriptionFull: string[];
@@ -21,8 +21,11 @@ export interface Product {
   shipping?: string;
   mainImage: { url: string; name: string };
   images: string[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _user?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createdAt?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   updatedAt?: any;
 }
 
@@ -41,9 +44,22 @@ export interface GetProducts {
 
 export interface Category {
   title: string;
+  titleUrl: string;
   description?: string;
   visibility?: boolean;
   mainImage?: { url: string; name: string; type?: boolean };
   subCategory?: string;
-  position: number;
+  position?: number;
+  menuHidden?: boolean;
+}
+
+export interface Cart {
+  totalQty: number;
+  totalPrice: number;
+  items: {
+    id?: string;
+    item: Product;
+    price: number;
+    qty: number;
+  }[];
 }

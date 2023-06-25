@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { CartComponent } from './cart/cart.component';
+import { CartComponent } from './cart-content/cart.component';
+import { CartShowComponent } from './cart-show/cart-show.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [],
+  declarations: [CartShowComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -13,6 +16,9 @@ import { CartComponent } from './cart/cart.component';
         component: CartComponent,
       },
     ]),
+    NgbModule,
+    FontAwesomeModule,
   ],
+  exports: [CartShowComponent],
 })
 export class CartModule {}

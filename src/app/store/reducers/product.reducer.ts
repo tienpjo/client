@@ -1,11 +1,9 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { Category, GetProducts, Product } from 'src/app/shared/models';
+import { createReducer, on } from '@ngrx/store';
+import { Cart, Category, Product } from 'src/app/shared/models';
 import { ProductActions } from '../actions';
-import { ActionReducer, MetaReducer } from '@ngrx/store';
 import * as AppState from './../state/app.state';
-import { GetProduct } from '../actions/product.action';
-import { state } from '@angular/animations';
-
+import * as localStorage from '../storage';
+import { Action } from 'rxjs/internal/scheduler/Action';
 export interface State extends AppState.State {
   products: ProductState;
 }
@@ -15,15 +13,18 @@ export const keyProductState = 'products';
 export interface ProductState {
   products: Product[];
   loadingProducts: boolean;
-  categories?: Array<Category>;
+  categories: Category[];
   loading: boolean;
+  cart: Cart;
   //
 }
 
 const initialState: ProductState = {
   products: [],
+  categories: [],
   loading: false,
   loadingProducts: false,
+  cart: localStorage.getItem('product'),
 };
 export const productReducer = createReducer<ProductState>(
   initialState,
@@ -39,6 +40,33 @@ export const productReducer = createReducer<ProductState>(
       ...state,
       loading: false,
       products: action.products,
+    };
+  }),
+
+  on(ProductActions.getCategories, (state, action): ProductState => {
+    return {
+      ...state,
+      loading: true,
+    };
+  }),
+
+  on(ProductActions.getCategoriesSuccess, (state, action): ProductState => {
+    return {
+      ...state,
+      categories: action.categories,
+    };
+  }),
+
+  on(ProductActions.addToCartSuccess, (state, action): ProductState => {
+    return {
+      ...state,
+      cart: action.id,
+    };
+  }),
+  on(ProductActions.getCartSuccess, (state, action): ProductState => {
+    return {
+      ...state,
+      cart: action.cart,
     };
   })
 );

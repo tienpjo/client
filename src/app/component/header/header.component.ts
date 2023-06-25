@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartComponent } from 'src/app/features/cart/cart/cart.component';
+import { CartComponent } from 'src/app/features/cart/cart-content/cart.component';
 
 @Component({
   selector: 'app-header',

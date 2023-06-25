@@ -3,12 +3,9 @@
     <i> <fa-icon icon="bars"></fa-icon></i>
     All Categories
   </p>
-  <ul class="list-unstyled">
+  <ul class="list-unstyled" *ngFor="let category of categories">
     <li>
-      <a href=""><img src="" alt="" />Men's Clothing<i class="fa fa-angle-right"></i></a>
-    </li>
-    <li>
-      <a href=""><img src="" alt="" />Women's Clothing<i class="fa fa-angle-right"></i></a>
+      <a href=""><img src="" alt="" />{{ category.title }}<i class="fa fa-angle-right"></i></a>
     </li>
   </ul>
 </div>

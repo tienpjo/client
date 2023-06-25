@@ -1,10 +1,10 @@
 .product-image {
   max-width: 10rem;
-  min-height: 230px;
+  min-height: 200px;
 }
 
 .product {
-  max-width: 260px;
+  max-width: 290px;
   max-height: auto;
   box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
   padding: 16px;
@@ -13,10 +13,10 @@
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 .main-img:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 .main-img {
-  min-height: 200px;
+  max-height: 315px;
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.2s ease-in-out;

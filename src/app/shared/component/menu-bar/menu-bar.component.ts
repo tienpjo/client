@@ -1,11 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.css'],
 })
-export class MenuBarComponent implements OnInit {
+export class MenuBarComponent {
   private scroll: number;
   display: string;
   @HostListener('window:scroll', []) onWindowScroll() {
@@ -16,6 +16,4 @@ export class MenuBarComponent implements OnInit {
       this.display = 'inherit';
     }
   }
-  constructor() {}
-  ngOnInit(): void {}
 }
