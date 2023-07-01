@@ -13,11 +13,15 @@ export const routes: Routes = [
     path: 'cart',
     loadChildren: () => import('./features/cart/cart.module').then(m => m.CartModule),
   },
+  {
+    path: 'product',
+    loadChildren: () => import('./features/products/products.module').then(m => m.ProductModule),
+  },
 ];
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

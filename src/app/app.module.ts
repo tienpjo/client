@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CartComponent } from './features/cart/cart-content/cart.component';
 import { CartModule } from './features/cart/cart.module';
 import { CookieService } from 'ngx-cookie-service';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, CartComponent],
   imports: [

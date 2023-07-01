@@ -8,3 +8,5 @@ export const GetProducts = createSelector(ProductFeatureState, state => state.pr
 export const GetCart = createSelector(ProductFeatureState, state => state.cart);
 
 export const GetCategories = createSelector(ProductFeatureState, state => state.categories);
+
+export const GetProduct = createSelector(ProductFeatureState, state => state.product);

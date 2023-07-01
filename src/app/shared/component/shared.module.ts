@@ -14,6 +14,7 @@ import {
   faShoppingCart,
   faTrash,
   faClose,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import { RouterModule } from '@angular/router';
 
@@ -28,6 +29,15 @@ import { LoginComponent } from './login/login.component';
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {
-    library.addIcons(faBars, faCartShopping, faShoppingCart, faCartArrowDown, faCartPlus, faTrash, faClose);
+    library.addIcons(
+      faBars,
+      faCartShopping,
+      faShoppingCart,
+      faCartArrowDown,
+      faCartPlus,
+      faTrash,
+      faClose,
+      faStar
+    );
   }
 }

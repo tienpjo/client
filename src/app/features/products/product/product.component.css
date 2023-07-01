@@ -1,0 +1,11 @@
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-top: auto;
+  background-color: #fff;
+  border-radius: 3px;
+}
+.product-img {
+  max-width: 450px;
+  max-height: 450px;
+}

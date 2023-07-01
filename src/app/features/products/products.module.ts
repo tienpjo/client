@@ -10,9 +10,11 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartModule } from '../cart/cart.module';
+import { ProductComponent } from './product/product.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductContentComponent],
+  declarations: [ProductListComponent, ProductContentComponent, ProductComponent],
   imports: [
     CommonModule,
     FormsModule, //added here too
@@ -22,6 +24,12 @@ import { CartModule } from '../cart/cart.module';
     CartModule,
     StoreModule.forFeature(keyProductState, productReducer),
     EffectsModule.forFeature([ProductEffects]),
+    RouterModule.forChild([
+      {
+        path: ':id',
+        component: ProductComponent,
+      },
+    ]),
   ],
   providers: [],
   exports: [ProductContentComponent, ProductListComponent],

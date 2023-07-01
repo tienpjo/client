@@ -1,10 +1,10 @@
 <section class="slider-area">
   <div class="container">
     <div class="row">
-      <div class="col-lg-3 col-md-4" *ngIf="categories$ | async as categories">
+      <div class="col-lg-3 col-md-3" *ngIf="categories$ | async as categories">
         <app-side-bar [categories]="categories"></app-side-bar>
       </div>
-      <div class="col-lg-9 col-md-8 padding-fix-l20">
+      <div class="col-lg-9 col-md-9 padding-fix-l20">
         <div class="owl-carousel owl-slider">
           <app-carousel></app-carousel>
         </div>

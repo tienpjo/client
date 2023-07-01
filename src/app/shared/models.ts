@@ -10,6 +10,7 @@ export interface User {
 export interface Product {
   _id?: string;
   title: string;
+  titleUrl?: string;
   description: string;
   descriptionFull: string[];
   category: string[];
@@ -20,7 +21,7 @@ export interface Product {
   stock: string;
   shipping?: string;
   mainImage: { url: string; name: string };
-  images: string[];
+  subImage: string[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _user?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

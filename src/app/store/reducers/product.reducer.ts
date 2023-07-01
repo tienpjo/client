@@ -16,6 +16,7 @@ export interface ProductState {
   categories: Category[];
   loading: boolean;
   cart: Cart;
+  product: Product;
 }
 
 const initialState: ProductState = {
@@ -24,6 +25,7 @@ const initialState: ProductState = {
   loading: false,
   loadingProducts: false,
   cart: localStorage.getItem('product'),
+  product: null,
 };
 
 export const productReducer = createReducer<ProductState>(
@@ -68,6 +70,19 @@ export const productReducer = createReducer<ProductState>(
     return {
       ...state,
       cart: action.cart,
+    };
+  }),
+
+  on(ProductActions.getProductByIdSuccess, (state, action): ProductState => {
+    return {
+      ...state,
+      product: action.product,
+    };
+  }),
+  on(ProductActions.getProdutSearchSuccess, (state, action): ProductState => {
+    return {
+      ...state,
+      products: action.products,
     };
   })
 );

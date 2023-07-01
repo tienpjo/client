@@ -56,4 +56,26 @@ export class ProductEffects {
       )
     );
   });
+
+  getProductById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.getProductById),
+      switchMap(action =>
+        this.apiService
+          .getProductById(action.name)
+          .pipe(map(res => ProductActions.getProductByIdSuccess({ product: res })))
+      )
+    );
+  });
+
+  getProductSearch$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.getProdutSearch),
+      switchMap(action =>
+        this.apiService
+          .getProductsSearch(action.title)
+          .pipe(map(res => ProductActions.getProdutSearchSuccess({ products: res })))
+      )
+    );
+  });
 }

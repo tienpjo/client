@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Category, GetProducts } from '../shared/models';
+import { Category, GetProducts, Product } from '../shared/models';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -47,11 +47,22 @@ export class ApiService {
     );
   }
 
+  getProductById(params: string) {
+    const headers = new HttpHeaders();
+    this.requestOpts = { headers, withCredentials: true };
+    const productUrl = this.apiUrl + '/api/products/findByName/' + params;
+    return this.http.get<Product>(productUrl, this.requestOpts);
+  }
+
+  getProductsSearch(query: string) {
+    const productUrl = this.apiUrl + '/api/products/search/' + query;
+    return this.http.get<Product[]>(productUrl, this.requestOpts);
+  }
+
   getCart() {
     const headers = new HttpHeaders();
     this.requestOpts = { headers, withCredentials: true };
     const cartUrl = this.apiUrl + '/api/cart';
-    console.log(cartUrl);
     return this.http.get(cartUrl, this.requestOpts);
   }
 
@@ -59,6 +70,7 @@ export class ApiService {
     const headers = new HttpHeaders();
     this.requestOpts = { headers, withCredentials: true };
     this.randomNumber = this.randomNumber + 1;
+    console.log(this.requestOpts);
     const randomNum = '&randomId=' + this.randomNumber; // add random to link
     const addCartUrl = this.apiUrl + '/api/cart/add/?id=' + params + randomNum;
     //  console.log(addCartUrl);
