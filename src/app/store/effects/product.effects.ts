@@ -74,7 +74,7 @@ export class ProductEffects {
       switchMap(action =>
         this.apiService
           .getProductsSearch(action.title)
-          .pipe(map(res => ProductActions.getProdutSearchSuccess({ products: res })))
+          .pipe(map(res => ProductActions.getProdutSearchSuccess({ productTitle: res })))
       )
     );
   });

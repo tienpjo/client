@@ -1,7 +1,7 @@
 export interface User {
   id?: string;
   username: string;
-  password: string;
+  password?: string;
   fullName?: string;
   role?: string[];
   accessToken?: string;
@@ -44,8 +44,8 @@ export interface GetProducts {
 }
 
 export interface Category {
-  title: string;
-  titleUrl: string;
+  title?: string;
+  titleUrl?: string;
   description?: string;
   visibility?: boolean;
   mainImage?: { url: string; name: string; type?: boolean };

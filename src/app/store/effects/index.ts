@@ -1,2 +1,3 @@
 import * as ProductEffect from './product.effects';
-export { ProductEffect };
+import * as AuthEffect from './user.effects';
+export { ProductEffect, AuthEffect };

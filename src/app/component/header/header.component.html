@@ -21,7 +21,7 @@
       <div class="col-lg-6 col-md-8">
         <div class="top-right text-right">
           <ul class="list-unstyled list-inline">
-            <li class="list-inline-item">
+            <!-- <li class="list-inline-item">
               <a href="">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -40,15 +40,15 @@
 
                 TK của tôi</a
               >
-            </li>
+            </li> -->
             <li class="list-inline-item">
               <a href=""><img src="" alt="" />DS yêu thích</a>
             </li>
-            <li class="list-inline-item">
+            <!-- <li class="list-inline-item">
               <a href=""><img src="" alt="" />Đơn hàng</a>
-            </li>
+            </li> -->
             <li class="list-inline-item">
-              <a href=""><img src="" alt="" />Đăng nhập</a>
+              <a [routerLink]="['/' + '/authorize/signin']">Đăng nhập</a>
             </li>
           </ul>
         </div>
@@ -68,7 +68,14 @@
       </div>
       <div class="col-md-5 padding-fix">
         <form action="#" class="search-bar">
-          <input type="text" name="search-bar" placeholder="Tìm kiếm sản phẩm..." />
+          <input
+            type="text"
+            name="search-product"
+            [formControl]="querySearch"
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
@@ -94,5 +101,5 @@
     </div>
   </div>
 </section>
-<app-menu-bar></app-menu-bar>
+<app-menu-bar [category]="category$ | async"></app-menu-bar>
 <app-cart #appcart></app-cart>

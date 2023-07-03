@@ -12,7 +12,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartModule } from '../cart/cart.module';
 import { ProductComponent } from './product/product.component';
 import { RouterModule } from '@angular/router';
-
 @NgModule({
   declarations: [ProductListComponent, ProductContentComponent, ProductComponent],
   imports: [

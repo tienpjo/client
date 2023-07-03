@@ -17,6 +17,10 @@ export const routes: Routes = [
     path: 'product',
     loadChildren: () => import('./features/products/products.module').then(m => m.ProductModule),
   },
+  {
+    path: 'authorize',
+    loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
+  },
 ];
 
 @NgModule({

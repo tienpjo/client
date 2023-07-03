@@ -2,17 +2,19 @@ import { User } from 'src/app/shared/models';
 import * as AppState from './../state/app.state';
 import { createReducer, on } from '@ngrx/store';
 import * as UserAction from '../actions/auth.action';
-import { state } from '@angular/animations';
-export interface State extends AppState.State {}
+export interface State extends AppState.State {
+  users: UserState;
+}
 
+export const keyAuthState = 'auth';
 export interface UserState {
   loading: boolean;
-  user: User;
+  userInfo: User;
 }
 
 export const initialState: UserState = {
   loading: false,
-  user: null,
+  userInfo: null,
 };
 
 export const userReducer = createReducer(
@@ -23,20 +25,21 @@ export const userReducer = createReducer(
       loading: true,
     };
   }),
+  on(UserAction.SignInSuccess, (state, action): UserState => {
+    return {
+      ...state,
+      userInfo: action.user,
+      loading: false,
+    };
+  }),
   //TODO: fix reducer below
-  on(UserAction.addUser, (state): UserState => {
+  on(UserAction.StoreUser, (state): UserState => {
     return {
       ...state,
     };
   }),
 
   on(UserAction.getUser, (state): UserState => {
-    return {
-      ...state,
-    };
-  }),
-
-  on(UserAction.SignInSuccess, (state): UserState => {
     return {
       ...state,
     };

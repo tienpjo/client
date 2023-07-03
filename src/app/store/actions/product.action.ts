@@ -32,7 +32,7 @@ export const getProdutSearch = createAction(
 
 export const getProdutSearchSuccess = createAction(
   '[Produc] Get Product From Search Query Success',
-  props<{ products: Product[] }>()
+  props<{ productTitle: string[] }>()
 );
 
 export const getCategoriesSuccess = createAction(

@@ -3,7 +3,6 @@ import { Cart, Category, Product } from 'src/app/shared/models';
 import { ProductActions } from '../actions';
 import * as AppState from './../state/app.state';
 import * as localStorage from '../storage';
-import { state } from '@angular/animations';
 export interface State extends AppState.State {
   products: ProductState;
 }
@@ -17,6 +16,7 @@ export interface ProductState {
   loading: boolean;
   cart: Cart;
   product: Product;
+  productTitle: string[];
 }
 
 const initialState: ProductState = {
@@ -26,6 +26,7 @@ const initialState: ProductState = {
   loadingProducts: false,
   cart: localStorage.getItem('product'),
   product: null,
+  productTitle: null,
 };
 
 export const productReducer = createReducer<ProductState>(
@@ -82,7 +83,7 @@ export const productReducer = createReducer<ProductState>(
   on(ProductActions.getProdutSearchSuccess, (state, action): ProductState => {
     return {
       ...state,
-      products: action.products,
+      productTitle: action.productTitle,
     };
   })
 );

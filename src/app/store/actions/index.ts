@@ -1,3 +1,3 @@
 import * as ProductActions from './product.action';
-
-export { ProductActions };
+import * as AuthActions from './auth.action';
+export { ProductActions, AuthActions };

@@ -18,6 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CartComponent } from './features/cart/cart-content/cart.component';
 import { CartModule } from './features/cart/cart.module';
 import { CookieService } from 'ngx-cookie-service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthModule } from './features/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, CartComponent],
@@ -28,7 +30,10 @@ import { CookieService } from 'ngx-cookie-service';
     SharedModule,
     FontAwesomeModule,
     ProductModule,
+    FormsModule,
     CartModule,
+    ReactiveFormsModule,
+    AuthModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ name: 'Client Redux', maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),

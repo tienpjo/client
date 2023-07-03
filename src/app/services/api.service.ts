@@ -56,7 +56,7 @@ export class ApiService {
 
   getProductsSearch(query: string) {
     const productUrl = this.apiUrl + '/api/products/search/' + query;
-    return this.http.get<Product[]>(productUrl, this.requestOpts);
+    return this.http.get<string[]>(productUrl, this.requestOpts);
   }
 
   getCart() {
@@ -94,5 +94,12 @@ export class ApiService {
   setHeader() {
     const headers = new HttpHeaders();
     this.requestOpts = { headers, withCredentials: true };
+  }
+
+  signIn(req: { username: string; password: string }) {
+    console.log(req);
+    const signInUrl = this.apiUrl + '/api/user/signin';
+    console.log(signInUrl);
+    return this.http.post(signInUrl, req, this.requestOpts);
   }
 }

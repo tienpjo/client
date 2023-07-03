@@ -1,8 +1,13 @@
 <div class="product_content">
   <div class="row">
     <div class="col-md-1 align-self-center">
+      <img class="img-fluid" [src]="product.mainImage?.url" [alt]="product?.title" />
       <div class="d-flex flex-column gap-3" *ngFor="let subImage of product.subImage; index as i">
-        <img class="preview-img img-fluid" [src]="product.subImage[i]" [alt]="product?.title" />
+        <div class="product_img_sub">
+          <span (click)="onClickImg(product?.subImage[i])">
+            <img class="preview-img img-fluid" [src]="product.subImage[i]" [alt]="product?.title" />
+          </span>
+        </div>
       </div>
     </div>
 
@@ -11,7 +16,9 @@
         <img class="img-fluid" [src]="product.mainImage?.url" [alt]="product?.title" />
       </div>
     </div>
-
+    <ng-template #clickImgShow>
+      <img class="img-fluid" [src]="urlImg" [alt]="product?.title" />
+    </ng-template>
     <div class="col-md-7 padding-fix-l20">
       <div class="product-detail">
         <div class="product-heading">

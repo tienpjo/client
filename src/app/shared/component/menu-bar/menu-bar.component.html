@@ -5,23 +5,14 @@
       <div class="col-md-12">
         <div class="main-menu">
           <ul class="list-unstyled list-inline">
-            <li class="list-inline-item">
-              <a>HOME <i class="fa fa-angle-down"></i></a>
-            </li>
             <li class="list-inline-item mega-menu">
-              <a>MEGA MENU <i class="fa fa-angle-down"></i></a>
+              <a>ALL PRODUCT <i class="fa fa-angle-down"></i></a>
             </li>
-            <li class="list-inline-item">
-              <a>PAGES <i class="fa fa-angle-down"></i></a>
-            </li>
-            <li class="list-inline-item">
-              <a>BLOG <i class="fa fa-angle-down"></i></a>
+            <li class="list-inline-item" *ngFor="let cat of category; index as i">
+              <a>{{ cat.title.toUpperCase() }} <i class="fa fa-angle-down"></i></a>
             </li>
             <li class="list-inline-item">
               <a href="20-contact.html">CONTACT</a>
-            </li>
-            <li class="list-inline-item trac-btn">
-              <a href="">Track Your Order</a>
             </li>
           </ul>
         </div>
