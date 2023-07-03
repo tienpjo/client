@@ -14,9 +14,9 @@ import {
   take,
 } from 'rxjs';
 import { CartComponent } from 'src/app/features/cart/cart-content/cart.component';
-import { Cart, Category } from 'src/app/shared/models';
+import { Cart, Category, User } from 'src/app/shared/models';
 import { ProductActions } from 'src/app/store/actions';
-import { ProductSelector } from 'src/app/store/selectors/index.selectors';
+import { ProductSelector, UserSelector } from 'src/app/store/selectors/index.selectors';
 import { State } from 'src/app/store/state/app.state';
 import { FormControl } from '@angular/forms';
 @Component({
@@ -30,12 +30,22 @@ export class HeaderComponent implements OnInit {
   category$: Observable<Category[]>;
   showAutocomplete$ = new BehaviorSubject(false);
   productTitles$: Observable<string[]>;
+  user$: Observable<any>;
+  // {
+  //   token: string;
+  //   user: {
+  //     username: string;
+  //     role: string;
+  //     fullName?: string;
+  //   };
+  // }
   @ViewChild('appcart') appCart: CartComponent;
   constructor(private router: Router, private renderer: Renderer2, private store: Store<State>) {
     this.querySearch.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(query => {
       const querySearch = query;
       this.store.dispatch(ProductActions.getProdutSearch({ title: querySearch }));
     });
+    this.user$ = this.store.select(UserSelector.GetUser);
   }
   cartClick(): void {
     const cartEl = this.appCart.cartBody.nativeElement;

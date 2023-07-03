@@ -17,10 +17,10 @@ export class AuthEffects {
     );
   });
 
-  // getUser$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(AuthActions.getUser),
-  //     mergeMap(action => this.apiService.)
-  //   )
-  // })
+  getUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.getUser),
+      mergeMap(() => this.apiService.getUser().pipe(map(res => AuthActions.getUserSuccess({ user: res }))))
+    );
+  });
 }

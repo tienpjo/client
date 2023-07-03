@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Category, GetProducts, Product } from '../shared/models';
 import { Observable, map } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from '../store/state/app.state';
+import { UserSelector } from '../store/selectors/index.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +14,7 @@ export class ApiService {
   private apiUrl = environment.apiUrl;
   requestOpts = {};
   randomNumber = 0;
-  constructor(private readonly http: HttpClient) {
+  constructor(private readonly http: HttpClient, private store: Store<State>) {
     this.setHeader();
   }
 
@@ -92,14 +95,25 @@ export class ApiService {
   }
 
   setHeader() {
-    const headers = new HttpHeaders();
+    this.store.select(UserSelector.GetUser).subscribe(user => {
+      if (user && user.accessToken) {
+        localStorage.setItem('key', user.accessToken);
+      }
+    });
+    const accessToken = localStorage.getItem('key');
+
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + accessToken);
     this.requestOpts = { headers, withCredentials: true };
   }
 
   signIn(req: { username: string; password: string }) {
-    console.log(req);
     const signInUrl = this.apiUrl + '/api/user/signin';
-    console.log(signInUrl);
     return this.http.post(signInUrl, req, this.requestOpts);
+  }
+
+  getUser() {
+    const userUrl = this.apiUrl + '/api/user';
+    return this.http.get(userUrl, this.requestOpts);
   }
 }

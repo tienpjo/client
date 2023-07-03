@@ -1,3 +1,3 @@
 import * as ProductSelector from './products.selectors';
-
-export { ProductSelector };
+import * as UserSelector from './user.selectors';
+export { ProductSelector, UserSelector };

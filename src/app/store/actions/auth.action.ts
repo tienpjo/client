@@ -10,4 +10,6 @@ export const SignUpSuccess = createAction('[Auth] User SignUp Success');
 
 export const getUser = createAction('[Auth] Get User');
 
+export const getUserSuccess = createAction('[Auth] Get User Success', props<{ user: any }>());
+
 export const StoreUser = createAction('[Auth] Store User', props<{ user: any }>());
