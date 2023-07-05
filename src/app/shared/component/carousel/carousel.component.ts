@@ -7,7 +7,8 @@ import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./carousel.component.css'],
 })
 export class CarouselComponent {
-  images = [1, 2].map(n => `https://www.thetahmid.com/themes/xemart-v1.0/images/girl-${n}.png`);
+  // images = [1, 2].map(n => `https://www.thetahmid.com/themes/xemart-v1.0/images/girl-${n}.png`);
+
   @Input() product: Product;
   @Input() intervalSlider = 3500;
   constructor(config: NgbCarouselConfig) {

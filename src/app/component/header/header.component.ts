@@ -15,10 +15,11 @@ import {
 } from 'rxjs';
 import { CartComponent } from 'src/app/features/cart/cart-content/cart.component';
 import { Cart, Category, User } from 'src/app/shared/models';
-import { ProductActions } from 'src/app/store/actions';
+import { AuthActions, ProductActions } from 'src/app/store/actions';
 import { ProductSelector, UserSelector } from 'src/app/store/selectors/index.selectors';
 import { State } from 'src/app/store/state/app.state';
 import { FormControl } from '@angular/forms';
+import { accessTokenKey } from 'src/app/shared/constants';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -45,7 +46,6 @@ export class HeaderComponent implements OnInit {
       const querySearch = query;
       this.store.dispatch(ProductActions.getProdutSearch({ title: querySearch }));
     });
-    this.user$ = this.store.select(UserSelector.GetUser);
   }
   cartClick(): void {
     const cartEl = this.appCart.cartBody.nativeElement;
@@ -57,6 +57,7 @@ export class HeaderComponent implements OnInit {
     this.cart$ = this.store.select(ProductSelector.GetCart);
     this.category$ = this.store.select(ProductSelector.GetCategories);
     this.productTitles$ = this.store.select(ProductSelector.GetProductTitles);
+    this.user$ = this.store.select(UserSelector.GetUser);
   }
 
   onFocus(): void {
@@ -69,5 +70,10 @@ export class HeaderComponent implements OnInit {
       .subscribe(() => {
         this.showAutocomplete$.next(false);
       });
+  }
+
+  logOut() {
+    localStorage.removeItem(accessTokenKey);
+    this.store.dispatch(AuthActions.StoreUser({ user: null }));
   }
 }

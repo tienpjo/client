@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, filter, take } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { accessTokenKey } from 'src/app/shared/constants';
 import { User } from 'src/app/shared/models';
 import { AuthActions } from 'src/app/store/actions';
 import { UserSelector } from 'src/app/store/selectors/index.selectors';
@@ -15,7 +16,7 @@ import { State } from 'src/app/store/state/app.state';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
-  errorMessage = '';
+  errorMessage: string;
   pageTitle = 'Sign In';
   loading$: Observable<boolean>;
   user$: Observable<User>;
@@ -30,6 +31,7 @@ export class SigninComponent implements OnInit {
   ) {
     this.loading$ = this.store.select(UserSelector.getAuthLoading);
     this.user$ = this.store.select(UserSelector.GetUser);
+    this.store.select(UserSelector.getLoginStatus).subscribe(err => (this.errorMessage = err));
   }
 
   ngOnInit(): void {
@@ -48,15 +50,12 @@ export class SigninComponent implements OnInit {
         take(1)
       )
       .subscribe(() => {
-        this.userSendRequest$.next(true); // login that bai
+        this.userSendRequest$.next(true);
       });
-
-    if (this.isLoggedIn) {
-      this.router.navigate(['/']);
-    }
+    this.user$.subscribe(user => (user?.accessToken ? this.router.navigate(['/jwt', user.accessToken]) : ''));
   }
 
-  get isLoggedIn(): Observable<boolean> {
+  get isLoggedIn(): Observable<void> {
     return this.authService.isLoggedIn;
   }
 }

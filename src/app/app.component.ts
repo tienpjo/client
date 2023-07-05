@@ -11,7 +11,6 @@ import { State } from './store/reducers/product.reducer';
 export class AppComponent implements OnInit {
   title = 'client';
   constructor(private store: Store<State>, private injector: Injector) {}
-
   ngOnInit(): void {
     this.store.dispatch(ProductActions.GetProduct({ loading: true }));
     this.store.dispatch(ProductActions.getCategories({ loading: true }));

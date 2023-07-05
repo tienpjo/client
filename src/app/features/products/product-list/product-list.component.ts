@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./product-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
   @Input() products: Product[];
   @Input() cartIds: { [productId: string]: number };
   @Output() addProduct = new EventEmitter<string>();
@@ -16,9 +16,6 @@ export class ProductListComponent implements OnInit {
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {
-    console.log(this.cartIds);
-  }
   onAddProduct(id: string): void {
     this.addProduct.emit(id);
   }

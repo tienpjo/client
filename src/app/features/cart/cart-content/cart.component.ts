@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Cart } from 'src/app/shared/models';
@@ -16,7 +17,12 @@ export class CartComponent implements OnInit {
   @ViewChild('cartoverlay') cartOverlay: ElementRef<HTMLDivElement>;
   @ViewChild('cartClose') cartClose: ElementRef<HTMLButtonElement>;
   cart$: Observable<Cart>;
-  constructor(private renderer: Renderer2, private elRef: ElementRef, private store: Store<State>) {}
+  constructor(
+    private renderer: Renderer2,
+    private elRef: ElementRef,
+    private store: Store<State>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.cart$ = this.store.select(ProductSelector.GetCart);
@@ -30,5 +36,9 @@ export class CartComponent implements OnInit {
   }
   removeCart(id: string) {
     this.store.dispatch(ProductActions.removeProductFromCart({ id: id }));
+  }
+  checkOut() {
+    this.closeCart();
+    this.router.navigate(['/cart/checkout']);
   }
 }

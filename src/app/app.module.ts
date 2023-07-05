@@ -20,6 +20,7 @@ import { CartModule } from './features/cart/cart.module';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './features/auth/auth.module';
+import { AuthInterceptorProvider } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, CartComponent],
@@ -39,7 +40,7 @@ import { AuthModule } from './features/auth/auth.module';
     EffectsModule.forRoot([]),
     AppRoutingModule,
   ],
-  providers: [ApiService, CookieService],
+  providers: [AuthInterceptorProvider, ApiService, CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -10,16 +10,22 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'cart',
-    loadChildren: () => import('./features/cart/cart.module').then(m => m.CartModule),
-  },
-  {
     path: 'product',
     loadChildren: () => import('./features/products/products.module').then(m => m.ProductModule),
   },
   {
     path: 'authorize',
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule),
+  },
+
+  {
+    path: 'cart',
+    loadChildren: () => import('./features/checkout/checkout.module').then(m => m.CheckoutModule),
+  },
+  {
+    path: 'jwt/:accessToken',
+    loadComponent: () =>
+      import('./features/auth/jwt-token/jwt-token.component').then(m => m.JwtTokenComponent),
   },
 ];
 

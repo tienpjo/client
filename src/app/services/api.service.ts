@@ -6,6 +6,7 @@ import { Observable, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from '../store/state/app.state';
 import { UserSelector } from '../store/selectors/index.selectors';
+import { accessTokenKey } from '../shared/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -94,26 +95,30 @@ export class ApiService {
     return this.http.get<Category[]>(categoryUrl, this.requestOpts);
   }
 
-  setHeader() {
-    this.store.select(UserSelector.GetUser).subscribe(user => {
-      if (user && user.accessToken) {
-        localStorage.setItem('key', user.accessToken);
-      }
-    });
-    const accessToken = localStorage.getItem('key');
-
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer ' + accessToken);
-    this.requestOpts = { headers, withCredentials: true };
-  }
-
   signIn(req: { username: string; password: string }) {
     const signInUrl = this.apiUrl + '/api/user/signin';
     return this.http.post(signInUrl, req, this.requestOpts);
   }
 
   getUser() {
-    const userUrl = this.apiUrl + '/api/user';
-    return this.http.get(userUrl, this.requestOpts);
+    // let headers = new HttpHeaders();
+    // headers = headers.set('Authorization', 'Bearer ' + localStorage.getItem(accessTokenKey));
+    // this.requestOpts = { headers, withCredentials: true };
+    const userUrl = this.apiUrl + '/api/user/';
+    return this.http.get(userUrl, { withCredentials: true });
+  }
+
+  setHeader() {
+    // this.store.select(UserSelector.GetUser).subscribe(user => {
+    //   if (user && user.accessToken) {
+    //     console.log('vao set header tai api');
+    //     localStorage.setItem(accessTokenKey, user.accessToken);
+    //   }
+    // });
+    const accessToken = localStorage.getItem(accessTokenKey);
+
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + accessToken);
+    this.requestOpts = { headers, withCredentials: true };
   }
 }

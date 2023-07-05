@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthActions } from '../actions';
-import { exhaustMap, map, mergeMap } from 'rxjs';
+import { catchError, exhaustMap, map, mergeMap, of } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
@@ -12,7 +12,10 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.SignIn),
       exhaustMap(action =>
-        this.apiService.signIn(action).pipe(map(res => AuthActions.SignInSuccess({ user: res })))
+        this.apiService.signIn(action).pipe(
+          map(res => AuthActions.SignInSuccess({ user: res })),
+          catchError(err => of(AuthActions.SignInFail({ user: err })))
+        )
       )
     );
   });
@@ -20,7 +23,9 @@ export class AuthEffects {
   getUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.getUser),
-      mergeMap(() => this.apiService.getUser().pipe(map(res => AuthActions.getUserSuccess({ user: res }))))
+      //TODO: fixxx
+      mergeMap(() => this.apiService.getUser().pipe(map(res => AuthActions.SignInSuccess({ user: res })))),
+      catchError(() => of(AuthActions.getUserFail()))
     );
   });
 }

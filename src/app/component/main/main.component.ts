@@ -3,9 +3,9 @@ import { Routes } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, filter, map } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
-import { Cart, Category, Product } from 'src/app/shared/models';
+import { Cart, Category, Product, User } from 'src/app/shared/models';
 import { State } from 'src/app/store/state/app.state';
-import { ProductSelector } from 'src/app/store/selectors/index.selectors';
+import { ProductSelector, UserSelector } from 'src/app/store/selectors/index.selectors';
 import { ProductActions } from 'src/app/store/actions';
 export const mainRoutes: Routes = [{}];
 @Component({
@@ -19,12 +19,15 @@ export class MainComponent implements OnInit {
   categories$: Observable<Category[]>;
   cartIds$: Observable<{ [productID: string]: number }>;
   cart$: Observable<Cart>;
+  user$: Observable<User>;
   constructor(private apiService: ApiService, private store: Store<State>) {}
   ngOnInit(): void {
+    //this.store.dispatch(AuthActions.getUser());
     this.products$ = this.store.select(ProductSelector.GetProducts);
     this.categories$ = this.store.select(ProductSelector.GetCategories);
     this.store.dispatch(ProductActions.getCart());
     this.cart$ = this.store.select(ProductSelector.GetCart);
+    this.user$ = this.store.select(UserSelector.GetUser);
     this.cartIds$ = this.cart$.pipe(
       filter(cart => !!cart),
       map((cart: Cart) =>
