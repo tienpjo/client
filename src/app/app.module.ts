@@ -21,7 +21,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './features/auth/auth.module';
 import { AuthInterceptorProvider } from './services/auth.interceptor';
-
+import { DashboardModule } from './features/dashboard/dashboard.module';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainComponent, CartComponent],
   imports: [
@@ -35,6 +35,7 @@ import { AuthInterceptorProvider } from './services/auth.interceptor';
     CartModule,
     ReactiveFormsModule,
     AuthModule,
+    DashboardModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ name: 'Client Redux', maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),

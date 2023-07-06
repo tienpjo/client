@@ -68,6 +68,7 @@ export const userReducer = createReducer(
     return {
       ...state,
       userInfo: action.user,
+      loading: false,
     };
   })
 );

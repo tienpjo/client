@@ -20,14 +20,15 @@ export class MainComponent implements OnInit {
   cartIds$: Observable<{ [productID: string]: number }>;
   cart$: Observable<Cart>;
   user$: Observable<User>;
+  loadingProduct$: Observable<boolean>;
   constructor(private apiService: ApiService, private store: Store<State>) {}
   ngOnInit(): void {
-    //this.store.dispatch(AuthActions.getUser());
     this.products$ = this.store.select(ProductSelector.GetProducts);
     this.categories$ = this.store.select(ProductSelector.GetCategories);
     this.store.dispatch(ProductActions.getCart());
     this.cart$ = this.store.select(ProductSelector.GetCart);
     this.user$ = this.store.select(UserSelector.GetUser);
+    this.loadingProduct$ = this.store.select(ProductSelector.GetProductLoading);
     this.cartIds$ = this.cart$.pipe(
       filter(cart => !!cart),
       map((cart: Cart) =>

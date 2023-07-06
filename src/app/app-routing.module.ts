@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, importProvidersFrom } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './component/main/main.component';
+import { AuthAdminGuard, AuthGuard } from './services/auth.guard';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,11 @@ export const routes: Routes = [
     path: 'jwt/:accessToken',
     loadComponent: () =>
       import('./features/auth/jwt-token/jwt-token.component').then(m => m.JwtTokenComponent),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canLoad: [AuthAdminGuard],
   },
 ];
 

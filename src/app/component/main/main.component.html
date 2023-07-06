@@ -1,4 +1,7 @@
 <section class="slider-area">
+  <div class="spinner-grow text-primary spinner" role="status" *ngIf="loadingProduct$ | async">
+    <span class="sr-only">Loading...</span>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-3" *ngIf="categories$ | async as categories">

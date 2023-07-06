@@ -27,12 +27,14 @@
             <li class="list-inline-item" *ngIf="(user$ | async) === null">
               <a [routerLink]="['/' + '/authorize/signin']">Đăng nhập</a>
             </li>
-            <li class="list-inline-item" *ngIf="user$ | async as user">
-              <a [routerLink]="['/' + '/authorize/logout']">Hi, {{ user.user.username }}</a>
-            </li>
-            <li class="list-inline-item">
-              <a (click)="logOut()">Log out</a>
-            </li>
+            <ng-container *ngIf="user$ | async as user">
+              <li class="list-inline-item">
+                <a [routerLink]="['/' + '/authorize/logout']">Hi, {{ user.username }}</a>
+              </li>
+              <li class="list-inline-item">
+                <a (click)="logOut()">Log out</a>
+              </li>
+            </ng-container>
           </ul>
         </div>
       </div>
@@ -89,7 +91,7 @@
 <ng-template #existUser>
   <ng-container *ngIf="user$ | async as user">
     <li class="list-inline-item">
-      <a [routerLink]="['/' + '/authorize/logout']">Hi, {{ user.user.username }}</a>
+      <a [routerLink]="['/' + '/authorize/logout']">Hi, {{ user.username }}</a>
     </li>
     <li class="list-inline-item">
       <a (click)="logOut()">Log out</a>

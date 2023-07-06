@@ -55,7 +55,7 @@ export class SigninComponent implements OnInit {
     this.user$.subscribe(user => (user?.accessToken ? this.router.navigate(['/jwt', user.accessToken]) : ''));
   }
 
-  get isLoggedIn(): Observable<void> {
+  get isLoggedIn(): Observable<boolean> {
     return this.authService.isLoggedIn;
   }
 }

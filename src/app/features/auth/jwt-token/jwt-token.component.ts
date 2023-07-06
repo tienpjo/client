@@ -6,6 +6,7 @@ import { State } from 'src/app/store/state/app.state';
 import { map, take } from 'rxjs';
 
 import { accessTokenKey } from 'src/app/shared/constants';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-jwt-token',
@@ -15,7 +16,12 @@ import { accessTokenKey } from 'src/app/shared/constants';
   styleUrls: ['./jwt-token.component.css'],
 })
 export class JwtTokenComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router, private store: Store<State>) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private store: Store<State>,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
     this.route.params
       .pipe(

@@ -116,7 +116,6 @@ export class ApiService {
     //   }
     // });
     const accessToken = localStorage.getItem(accessTokenKey);
-
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer ' + accessToken);
     this.requestOpts = { headers, withCredentials: true };

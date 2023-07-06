@@ -5,6 +5,7 @@ export interface User {
   fullName?: string;
   role?: string[];
   accessToken?: string;
+  user?: User;
 }
 
 export interface Product {

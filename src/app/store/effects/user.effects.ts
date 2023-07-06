@@ -24,7 +24,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.getUser),
       //TODO: fixxx
-      mergeMap(() => this.apiService.getUser().pipe(map(res => AuthActions.SignInSuccess({ user: res })))),
+      mergeMap(() => this.apiService.getUser().pipe(map(res => AuthActions.StoreUser({ user: res })))),
       catchError(() => of(AuthActions.getUserFail()))
     );
   });
