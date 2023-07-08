@@ -2,7 +2,6 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthActions, ProductActions } from './store/actions';
 import { State } from './store/reducers/product.reducer';
-import { AuthService } from './services/auth.service';
 import { UserSelector } from './store/selectors/index.selectors';
 import { take } from 'rxjs';
 import { accessTokenKey } from './shared/constants';
