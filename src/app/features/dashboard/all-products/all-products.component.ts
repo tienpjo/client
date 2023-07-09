@@ -94,7 +94,6 @@ export class AllProductsComponent implements OnInit {
       tag = tag.slice(0, -1);
     }
     if (tag.length > 0 && !this.tagsCategory.includes(tag)) {
-      console.log(tag);
       this.tagsCategory.push(tag);
     }
   }

@@ -25,7 +25,6 @@ export class ProductContentComponent implements OnInit {
   }
 
   onClickImg(url: string) {
-    console.log(url);
     this.mainImgUrl = url;
     this.status = true;
   }

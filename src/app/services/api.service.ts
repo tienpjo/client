@@ -64,7 +64,6 @@ export class ApiService {
   }
 
   addProduct(req: Product) {
-    console.log(req);
     const addUrl = this.apiUrl + '/api/products/add';
     console.log(addUrl);
     return this.http.post(addUrl, req, this.requestOpts);
@@ -81,7 +80,6 @@ export class ApiService {
     const headers = new HttpHeaders();
     this.requestOpts = { headers, withCredentials: true };
     this.randomNumber = this.randomNumber + 1;
-    console.log(this.requestOpts);
     const randomNum = '&randomId=' + this.randomNumber; // add random to link
     const addCartUrl = this.apiUrl + '/api/cart/add/?id=' + params + randomNum;
     //  console.log(addCartUrl);
@@ -124,6 +122,7 @@ export class ApiService {
     // });
     const accessToken = localStorage.getItem(accessTokenKey);
     let headers = new HttpHeaders();
+
     headers = headers.set('Authorization', 'Bearer ' + accessToken);
     this.requestOpts = { headers, withCredentials: true };
   }
