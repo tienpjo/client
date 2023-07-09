@@ -124,20 +124,22 @@
         <div class="row mt-2">
           <label class="col-md-2 col-form-label" for="descriptionFull">descriptionFull</label>
           <div class="col-md-8">
-            <input
+            <textarea
               class="form-control"
               id="descriptionFullId"
-              type=""
               placeholder="Samsung Galaxy Watch smartwatch (46mm, GPS, Bluetooth) – Silver/Black (US Version with Warranty)"
               name="descriptionFull"
               formControlName="descriptionFull"
+              rows="3"
+            >
+             
               [ngClass]="{
                 'is-invalid':
                   (submitProductForm.get('descriptionFull')?.touched ||
                     submitProductForm.get('descriptionFull')?.dirty) &&
                   !submitProductForm.get('descriptionFull')?.valid
               }"
-            />
+            </textarea>
             <span class="invalid-feedback">
               <span *ngIf="submitProductForm.get('descriptionFull')?.errors?.['required']">
                 descriptionFull is required.
@@ -285,20 +287,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="row mt-2">
-          <div class="col-md-7 offset-md-4">
-            <button
-              class="btn btn-primary me-3"
-              type="submit"
-              style="width: 80px"
-              [disabled]="!submitProductForm.valid"
-              (click)="modal.close('Save click')"
-            >
-              Save
-            </button>
-            <button class="btn btn-outline-secondary" type="button" style="width: 80px">Cancel</button>
-          </div>
-        </div> -->
       </div>
       <div class="modal-footer">
         <button
@@ -312,9 +300,6 @@
         <button type="button" class="btn btn-secondary me-3" data-dismiss="modal">Close</button>
       </div>
     </form>
-    <!-- <div class="modal-footer">
-      <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div> -->
   </ng-template>
 
   <ng-template #deleteproduct let-modal>

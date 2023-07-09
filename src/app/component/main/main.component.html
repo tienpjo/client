@@ -28,13 +28,19 @@
           <div class="area-title">
             <h5>Product</h5>
           </div>
-          <div *ngIf="products$ | async as products">
-            <app-product-list
-              [cartIds]="cartIds$ | async"
-              [products]="products"
-              (addProduct)="addToCart($event)"
-              (removeProduct)="removeFromCart($event)"
-            ></app-product-list>
+          <div class="container">
+            <div class="row d-flex flex-wrap justify-content-between">
+              <ng-container *ngIf="products$ | async as products">
+                <div class="col-md-4" *ngFor="let product of products; trackBy: trackById">
+                  <app-product-list
+                    [cartIds]="cartIds$ | async"
+                    [product]="product"
+                    (addProduct)="addToCart($event)"
+                    (removeProduct)="removeFromCart($event)"
+                  ></app-product-list>
+                </div>
+              </ng-container>
+            </div>
           </div>
         </div>
       </div>

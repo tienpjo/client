@@ -5,7 +5,8 @@ import { Product } from 'src/app/shared/models';
 import { ProductSelector } from 'src/app/store/selectors/index.selectors';
 import { State } from 'src/app/store/state/app.state';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardActions } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-all-products',
@@ -53,8 +54,9 @@ export class AllProductsComponent implements OnInit {
       regularPrice: +this.submitProductForm.value['regularPrice'],
       salePrice: this.submitProductForm.value['salePrice'] ? +this.submitProductForm.value['salePrice'] : '',
       stock: this.checkedChanged() ? 'On Stock' : 'Out Stock',
+      titleUrl: this.submitProductForm.value['title'].split(' ').join('-'),
     };
-    // console.log(this.product);
+    this.store.dispatch(DashboardActions.addProduct({ product: this.product }));
     this.submitProductForm.reset();
   }
 

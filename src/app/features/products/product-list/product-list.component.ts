@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent {
-  @Input() products: Product[];
+  @Input() product: Product;
   @Input() cartIds: { [productId: string]: number };
   @Output() addProduct = new EventEmitter<string>();
   @Output() removeProduct = new EventEmitter<string>();

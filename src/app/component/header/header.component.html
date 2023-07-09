@@ -4,18 +4,18 @@
     <div class="row">
       <div class="col-lg-6 col-md-4">
         <div class="top-left d-flex">
-          <div class="lang-box">
-            <span><img src="" alt="" />Vietnamese<i class="fa fa-angle-down"></i></span>
-            <ul class="list-unstyled">
-              <li><img src="" alt="" />English</li>
-            </ul>
-          </div>
-          <div class="mny-box">
+          <ng-container *ngIf="user$ | async as user">
+            <div class="lang-box" *ngIf="user.role === 'Admin'">
+              <a [routerLink]="['/' + '/dashboard/index']">Dashboard<i class="fa fa-angle-down"></i></a>
+            </div>
+          </ng-container>
+
+          <!-- <div class="mny-box">
             <span>VND<i class="fa fa-angle-down"></i></span>
             <ul class="list-unstyled">
               <li>USD</li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="col-lg-6 col-md-8">

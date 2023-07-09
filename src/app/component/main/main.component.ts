@@ -44,4 +44,7 @@ export class MainComponent implements OnInit {
   removeFromCart(id: string) {
     this.store.dispatch(ProductActions.removeProductFromCart({ id: id }));
   }
+  trackById(_index: number, item: Product) {
+    return item._id;
+  }
 }

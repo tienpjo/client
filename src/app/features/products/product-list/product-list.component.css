@@ -4,22 +4,26 @@
 }
 
 .product {
-  max-width: 350px;
-  max-height: auto;
+  width: 280px;
+  height: 400px;
   box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
-  padding: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   background-color: #f8f9fa;
   transition: all;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  margin-top: 16px;
 }
 .main-img:hover {
   transform: scale(1.05);
 }
 .main-img {
-  max-height: 300px;
+  height: 300px;
+  width: 250px;
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.2s ease-in-out;
+  background-position: center !important;
 }
 .img-fluid {
   max-width: 350px;
@@ -55,6 +59,7 @@ ul.product-title li {
 ul.product-title li:last-child {
   font-size: 14px;
   font-weight: normal;
+  display: block;
 }
 
 ul.price li:last-child {

@@ -1,3 +1,5 @@
 import * as ProductActions from './product.action';
 import * as AuthActions from './auth.action';
-export { ProductActions, AuthActions };
+import * as DashboardActions from './dashboard.action';
+
+export { ProductActions, AuthActions, DashboardActions };

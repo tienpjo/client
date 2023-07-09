@@ -63,6 +63,13 @@ export class ApiService {
     return this.http.get<string[]>(productUrl, this.requestOpts);
   }
 
+  addProduct(req: Product) {
+    console.log(req);
+    const addUrl = this.apiUrl + '/api/products/add';
+    console.log(addUrl);
+    return this.http.post(addUrl, req, this.requestOpts);
+  }
+
   getCart() {
     const headers = new HttpHeaders();
     this.requestOpts = { headers, withCredentials: true };
