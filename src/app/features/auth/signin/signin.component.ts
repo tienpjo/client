@@ -30,8 +30,9 @@ export class SigninComponent implements OnInit {
     private router: Router
   ) {
     this.loading$ = this.store.select(UserSelector.getAuthLoading);
-    this.user$ = this.store.select(UserSelector.GetUser);
-    this.store.select(UserSelector.getLoginStatus).subscribe(err => (this.errorMessage = err));
+    this.store.select(UserSelector.getLoginStatus).subscribe(err => {
+      this.errorMessage = err;
+    });
   }
 
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class SigninComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+    this.user$ = this.store.select(UserSelector.GetUser);
   }
 
   signIn(): void {

@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'loca',
+  production: true,
+  apiUrl: 'http://43.206.109.189:8080',
 };

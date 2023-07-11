@@ -1,12 +1,14 @@
-FROM node:14.2.0-alpine3.11 as build
-WORKDIR /app
+FROM node:18-alpine AS build
+WORKDIR /tienpjo/client/src/app
 
-RUN npm install -g @angular/cli
+COPY package*.json ./
 
-COPY ./package.json .
 RUN npm install
-COPY . .
-RUN ng build
 
-FROM nginx as runtime
-COPY --from=build /app/dist/client /usr/share/nginx/html
+COPY . .
+
+RUN npm run build
+
+FROM nginx:alpine
+COPY --from=build /tienpjo/client/src/app/dist/client /usr/share/nginx/html
+EXPOSE 80
