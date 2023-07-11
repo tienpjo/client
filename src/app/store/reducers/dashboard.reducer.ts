@@ -2,7 +2,6 @@ import { Category, Product } from 'src/app/shared/models';
 import * as AppState from './../state/app.state';
 import { createReducer, on } from '@ngrx/store';
 import { DashboardActions } from '../actions';
-import { state } from '@angular/animations';
 
 export interface State extends AppState.State {
   dashboard: DashboardSate;

@@ -17,7 +17,7 @@ export class AuthService {
       .select(UserSelector.GetUser)
       .pipe(take(1))
       .subscribe(user => {
-        if (!user) {
+        if (!user && localStorage.getItem(accessTokenKey)) {
           this.store.dispatch(AuthActions.getUser());
         }
       });
